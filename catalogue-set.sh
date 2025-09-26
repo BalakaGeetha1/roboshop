@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+#set -euo pipefail
 
 trap 'echo "There is an error in $LINENO, Command is: $BASH_COMMAND"' ERR
 
@@ -13,7 +13,7 @@ N="\e[0m"
 LOGS_FOLDER="/var/log/roboshop"
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 SCRIPT_DIR=$PWD
-MONGODB_HOST=mongodb.daws86s.fun
+MONGODB_HOST=mongodb.gdaws86s.fun
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log" # /var/log/shell-script/16-logs.log
 
 mkdir -p $LOGS_FOLDER
@@ -31,6 +31,7 @@ dnf install nodejs -y &>>$LOG_FILE
 echo -e "Installing NodeJS 20 ... $G SUCCESS $N"
 
 id roboshop &>>$LOG_FILE
+
 if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
 else
